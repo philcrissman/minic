@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'minic'
+require 'optparse'
+
+@options = {}
+
+OptionParser.new do |opts|
+  opts.on("--lex", "Run the lexer, then stop") do
+    @options[:lex] = true
+  end
+
+  opts.on("--parse", "Run the lexer, then the parser, then stop") do
+    @options[:parse] = true
+  end
+
+  opts.on("--codegen", "Run the lexer, the parser, and assembly generation, then stop") do
+    @options[:codegen] = true
+  end
+
+  opts.on("-S", "Emit an assembly file, but don't assemble or link it") do
+    @options[:S] = true
+  end
+end.parse!
+
+Minic.start ARGV[0], @options
+
+
