@@ -1,11 +1,22 @@
 module Minic
   module AST
-    Program = Struct.new(:function_definition)
+    class Node
+    end
 
-    Function = Struct.new(:identifier_name, :body)
+    class Program < Node
+      attr_reader :function_definition
 
-    ReturnStatement = Struct.new(:expression)
+      def initialize(function_definition)
+        @function_definition = function_definition
+      end
+    end
 
-    ConstantExpression = Struct.new(:int_constant)
+    class Function < Node
+      attr_reader :name, :body
+
+      def initialize(name, body)
+
+      end
+    end
   end
 end
