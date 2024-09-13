@@ -8,7 +8,7 @@ module Minic
 
       def initialize(function_definition)
         @function_definition = function_definition
-      end
+    end
     end
 
     class Function < Node
