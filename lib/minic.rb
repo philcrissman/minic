@@ -5,6 +5,8 @@ require_relative "minic/driver"
 require_relative "minic/lexer"
 require_relative "minic/ast"
 require_relative "minic/parser"
+require_relative "minic/assembly_ast.rb"
+require_relative "minic/code_gen.rb"
 
 module Minic
   class Error < StandardError; end

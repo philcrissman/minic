@@ -18,6 +18,9 @@ module Minic
         tokens = Minic::Lexer.tokenize(file_contents)
         return if opts[:lex]
         ast = Minic::Parser.parse(tokens)
+        return if opts[:parse]
+
+        assembly = Minic::CodeGen.generate_code(ast)
       end
 
       def assemble code
