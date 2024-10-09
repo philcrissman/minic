@@ -17,6 +17,7 @@ module Minic
         file_contents = File.read(filename)
         tokens = Minic::Lexer.tokenize(file_contents)
         return if opts[:lex]
+        ast = Minic::Parser.parse(tokens)
       end
 
       def assemble code
