@@ -13,6 +13,15 @@ class ParserText < Minitest::Test
 
   end
 
+  def test_that_a_progam_with_an_extra_token_is_invalid
+    tokens = ::Minic::Lexer.tokenize("int main(void) {\n\treturn 2;\n}\n\nfoo")
+
+    assert_raises do
+      program = ::Minic::Parser.parse(tokens)
+    end
+
+  end
+
   def test_that_parse_expression_returns_a_constant
     tokens = Minic::Lexer.tokenize "2"
     

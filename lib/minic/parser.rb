@@ -20,6 +20,7 @@ module Minic
         expect :open_brace, tokens
         statement = parse_statement tokens
         expect :close_brace, tokens
+        expect_empty tokens
         Minic::AST::Function.new function_name, statement
       end
 
@@ -45,6 +46,12 @@ module Minic
         end
 
         actual.shift
+      end
+
+      def expect_empty tokens
+        unless tokens.empty?
+          raise "Syntax error: no more tokens expected, but found #{tokens}"
+        end
       end
     end
   end
