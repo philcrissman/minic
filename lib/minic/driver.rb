@@ -33,9 +33,9 @@ module Minic
         end
         filename = filename.split(".").first
         puts filename
-        f = File.write "#{filename}", output
-        binding.pry
-        f.close
+        File.write "#{filename}", output
+        #binding.pry
+        #f.close
       end
     end
   end
