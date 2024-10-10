@@ -31,8 +31,11 @@ module Minic
           print output
           puts
         end
+        filename = filename.split(".").first
         puts filename
         f = File.write "#{filename}", output
+        binding.pry
+        f.close
       end
     end
   end

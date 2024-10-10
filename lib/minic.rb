@@ -7,6 +7,8 @@ require_relative "minic/ast"
 require_relative "minic/parser"
 require_relative "minic/assembly_ast.rb"
 require_relative "minic/code_gen.rb"
+require 'pry'
+require 'pry-byebug'
 
 module Minic
   class Error < StandardError; end
