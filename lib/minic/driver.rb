@@ -33,9 +33,10 @@ module Minic
         end
         filename = filename.split(".").first
         puts filename
-        File.write "#{filename}", output
+        f = File.open(filename, "w+")
+        f.write output
         #binding.pry
-        #f.close
+        f.close
       end
     end
   end
