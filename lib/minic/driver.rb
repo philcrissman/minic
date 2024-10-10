@@ -4,15 +4,21 @@ module Minic
   class Driver
     class << self
       def run filename, opts
-        preprocessed_filename = filename.split('.')[0] + ".i"
+        object_filename = filename.split('.').first
+        preprocessed_filename = object_filename + ".i"
         `gcc -E -P #{filename} -o #{preprocessed_filename}`
 
         code = compile preprocessed_filename, opts
-        return if opts[:S]
 
-        assemble code, preprocessed_filename, opts
+        File.delete(preprocessed_filename)
 
-        `gcc return_2.s -o return_2`
+        assembly_filename = object_filename + '.s'
+
+        assemble code, assembly_filename, opts
+
+        `gcc #{assembly_filename} -o #{object_filename}`
+        
+        File.delete(assembly_filename)
       end
 
       def compile filename, opts
@@ -32,12 +38,10 @@ module Minic
         if opts[:S]
           print output
           puts
+          return
         end
-        filename = filename.split(".").first + ".s"
-        puts filename
         f = File.open(filename, "w+")
         f.write output
-        #binding.pry
         f.close
       end
     end

@@ -27,7 +27,6 @@ class AssemblyASTTest < Minitest::Test
     tokens = ::Minic::Lexer.tokenize("int main(void) {\n\treturn 2;\n}")
     ast = Minic::Parser.parse(tokens)
     assembly_ast = Minic::CodeGen.generate_code(ast)
-
-    puts assembly_ast.output
+    
   end
 end
