@@ -19,7 +19,7 @@ module Minic
       def generate_instructions statement
         instructions = []
 
-        src = Minic::AssemblyAST::Imm.new(generate_constant(statement.exp))
+        src = generate_constant(statement.exp)
         instructions << Minic::AssemblyAST::Mov.new(
           src,
           Minic::AssemblyAST::Register.new) 

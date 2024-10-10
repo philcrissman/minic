@@ -57,7 +57,7 @@ module Minic
     class Ret < Instruction
       def output
         out = <<-EOS
-            "ret\n"
+            ret\n
         EOS
         out
       end
