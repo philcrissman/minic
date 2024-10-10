@@ -10,7 +10,7 @@ module Minic
         code = compile preprocessed_filename, opts
         return if opts[:S]
 
-        assemble code
+        assemble code, preprocessed_filename, opts
       end
 
       def compile filename, opts
@@ -20,11 +20,19 @@ module Minic
         ast = Minic::Parser.parse(tokens)
         return if opts[:parse]
 
-        assembly = Minic::CodeGen.generate_code(ast)
+        ast
       end
 
-      def assemble code
-
+      def assemble code, filename, opts
+        assembly = Minic::CodeGen.generate_code(code)
+        return if opts[:codegen]
+        output = assembly.output
+        if opts[:S]
+          print output
+          puts
+        end
+        puts filename
+        f = File.write "#{filename}", output
       end
     end
   end
