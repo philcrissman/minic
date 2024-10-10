@@ -11,6 +11,8 @@ module Minic
         return if opts[:S]
 
         assemble code, preprocessed_filename, opts
+
+        `gcc return_2.s -o return_2`
       end
 
       def compile filename, opts
@@ -31,7 +33,7 @@ module Minic
           print output
           puts
         end
-        filename = filename.split(".").first
+        filename = filename.split(".").first + ".s"
         puts filename
         f = File.open(filename, "w+")
         f.write output

@@ -22,7 +22,7 @@ module Minic
 
       def output
         out = <<-EOS
-            .globl
+            .globl _#{name}
         _#{name}:
         EOS
 
