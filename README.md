@@ -1,24 +1,40 @@
 # Minic
 
-TODO: Delete this and the text below, and describe your gem
+Minic is a C compiler written in Ruby, based off the book [Writing A C Compiler](https://nostarch.com/writing-c-compiler) by [Nora Sandler](https://norasandler.com/)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/minic`. To experiment with that code, run `bin/console` for an interactive prompt.
+### Warning
+
+The book starts with very simple C programs, and progressively adds language features. Depending when you come across this gem, you may find it can't compile very much. At the time of writing this, I'm working through the second chapter; the only program this can _really_ successfully compile is:
+
+```
+int main(void) {
+  return 2;
+}
+```
+
+It's probably more interesting (maybe?) as a reference than to _actually_ compile C programs :-)
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+I haven't pushed this to rubygems, yet.
 
-Install the gem and add to the application's Gemfile by executing:
+If it _were_ in rubygems, you could install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add minic
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install minic
 
 ## Usage
 
-TODO: Write usage instructions here
+The assembly generated is based on x86 assembly; if running on Apple Silicon, you'll need to open an x86 shell to use it:
+
+`arch -x86_64 zsh`
+
+Once installed and in an x64 shell, you can run against a C file with:
+
+`minic hello.c`
 
 ## Development
 
@@ -28,7 +44,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/minic. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/minic/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/minic. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/philcrissman/minic/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
