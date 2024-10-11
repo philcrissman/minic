@@ -76,6 +76,24 @@ class LexerTest < Minitest::Test
     assert_equal [[:semicolon]], result
   end
 
+  def test_tokenize_tilde
+    result = ::Minic::Lexer.tokenize("~")
+
+    assert_equal [[:bitwise_complement]], result
+  end
+
+  def test_tokenize_negation
+    result = ::Minic::Lexer.tokenize("-")
+
+    assert_equal [[:negation]], result
+  end
+
+  def test_tokenize_decrement
+    result = ::Minic::Lexer.tokenize("--")
+
+    assert_equal [[:decrement]], result
+  end
+
   def test_tokenize_with_full_function
     result = ::Minic::Lexer.tokenize("int main(void) {\n\treturn 2;\n}")
 

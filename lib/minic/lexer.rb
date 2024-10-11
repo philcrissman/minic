@@ -10,6 +10,9 @@ module Minic
     OPEN_BRACE     = /\A{/
     CLOSE_BRACE    = /\A}/
     SEMICOLON      = /\A;/
+    TILDE          = /\A~/
+    MINUS          = /\A-/
+    DECREMENT      = /\A--/
 
     class << self
       def tokenize str
@@ -50,8 +53,17 @@ module Minic
           in SEMICOLON
             tokens << [:semicolon]
             str.sub!(SEMICOLON, '')
+          in TILDE
+            tokens << [:bitwise_complement]
+            str.sub!(TILDE, '')
+          in DECREMENT
+            tokens << [:decrement]
+            str.sub!(DECREMENT, '')
+          in MINUS
+            tokens << [:negation]
+            str.sub!(MINUS, '')
           else
-            raise "Unrecognized token" unless str.empty?
+            raise "Unrecognized token at #{str}" unless str.empty?
           end
         end
 

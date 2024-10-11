@@ -9,12 +9,16 @@ module Minic
         `gcc -E -P #{filename} -o #{preprocessed_filename}`
 
         code = compile preprocessed_filename, opts
+        return if opts[:lex]
+        return if opts[:parse]
 
         File.delete(preprocessed_filename)
 
         assembly_filename = object_filename + '.s'
 
         assemble code, assembly_filename, opts
+        return if opts[:codegen]
+        return if opts[:S]
 
         `gcc #{assembly_filename} -o #{object_filename}`
         
